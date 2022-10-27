@@ -1,7 +1,7 @@
 "use strict";
 // da correggere, non funzionante
 class Abbigliamento {
-    constructor(id, codprod, collezione, capo, modello, quantità, colore, prezzoivaesclusa, disponibile, saldo) {
+    constructor(id, codprod, collezione, capo, modello, quantità, colore, prezzoivaesclusa, prezzoivainclusa, disponibile, saldo) {
         this.id = id;
         this.codprod = codprod;
         this.collezione = collezione;
@@ -33,23 +33,25 @@ let promise = fetch(URLocation)
 function getData(array) {
     // implementare funzione per assegnare gli elementi dell'array a arrCapi: Abbigliamento[]
     for (let elem of array) {
-        arrCapi.push(elem);
+        let { id, codprod, collezione, capo, modello, quantita, colore, prezzoivainclusa, prezzoivaesclusa, disponibile, saldo } = elem;
+        console.log(id);
+        arrCapi.push(new Abbigliamento(id, codprod, collezione, capo, modello, quantita, colore, prezzoivainclusa, prezzoivaesclusa, disponibile, saldo));
     }
-    console.log(arrCapi);
+    // console.log(arrCapi)
 }
-function selectCapo() {
-    let searchInput = prompt('search capo...');
-    for (let capo of arrCapi) {
-        let bool = capo.capo.includes(searchInput);
-        if (bool) {
-            console.log(`
-            il capo cercato è: ${capo.capo}
-            disponibile in ${capo.disponibile}
-            costo iniziale: ${capo.prezzoivainclusa}
-            sconto del ${capo.saldo}%
-            prezzo finale ${capo.getAcquistoCapo()}€
-            quantità rimanente: ${capo.quantità}
-            `);
-        }
-    }
-}
+// function selectCapo (){
+//     let searchInput = prompt('search capo...')
+//     for(let capo of arrCapi){
+//         let bool = capo.capo.includes(searchInput)
+//         if(bool){
+//             console.log(`
+//             il capo cercato è: ${capo.capo}
+//             disponibile in ${capo.disponibile}
+//             costo iniziale: ${capo.prezzoivainclusa}
+//             sconto del ${capo.saldo}%
+//             prezzo finale ${capo.getAcquistoCapo()}€
+//             quantità rimanente: ${capo.quantità}
+//             `)
+//         }
+//     }
+// }
